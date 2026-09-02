@@ -268,7 +268,7 @@ function redeemGeneratedCode() {
 
 // ADMIN SECURITY PASSPHRASE CHECKER: Compares input field value with '6DSTAFF' key criteria
 function verifyAdminLogin() {
-    if (document.getElementById("admin-password").value.trim() === "GS") {
+    if (document.getElementById("admin-password").value.trim() === "QWERTYUIOP") {
         document.getElementById("admin-login-box").style.display = "none";
         document.getElementById("admin-dashboard-box").style.display = "block";
         updateAdminVaultDisplay();

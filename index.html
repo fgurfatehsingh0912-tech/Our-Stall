@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini-City Cup Blaster | Student Stall Day</title>
-    <!-- Link to the external CSS style sheet chunk -->
-    <link rel="stylesheet" href="styles.css">
+    <title>Nerf Shots | Student Stall Day</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Nerf Shots</h1>
+        <h1>🏙️ Nerf Shots</h1>
         <p>A fun target game built by some students in 6D for the Annual School Market Day</p>
     </header>
 
-    <!-- Multi-Page Navigation Menu System (Prize Tiers Page Removed) -->
     <nav id="nav-bar">
         <button class="nav-btn active" onclick="switchPage(event, 'home')">🏠 Welcome</button>
         <button class="nav-btn" onclick="switchPage(event, 'game')">🎮 Play Arena</button>
         <button class="nav-btn" onclick="switchPage(event, 'discounts')">🎟️ Lucky Discounts</button>
-        <button class="nav-btn" onclick="switchPage(event, 'charity')">🧮 Percentage Calculator</button>
+        <button class="nav-btn" onclick="switchPage(event, 'calculator')">📊 Discount Calculator</button>
         <button class="nav-btn" onclick="switchPage(event, 'admin')" style="background-color: #334155;">🔑 Admin Portal</button>
     </nav>
 
     <div class="container">
         
-        <!-- Global Charity Header Banner -->
         <div class="charity-banner">
-            🕊️ <strong>100% For A Good Cause:</strong> Every single cent raised at our stall is donated directly to our school's chosen charity!
+            🎯 <strong>Class 6D Stall Event:</strong> Practice your shooting skills, win coupons, and check your package deals below!
         </div>
 
-        <!-- PAGE 1: HOME -->
         <div id="page-home" class="page-content active">
             <div class="grid">
                 <div>
@@ -77,24 +73,27 @@
                 </div>
             </div>
         </div>
-        <!-- PAGE 2: ARENA -->
+
         <div id="page-game" class="page-content">
-            <section class="card card-primary" style="text-align: center;">
+            <section class="card card-primary" style="text-align: center; min-height: 480px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <h2>🎮 Digital Target Training Center</h2>
-                <p style="margin-bottom: 1.5rem;">Practice knocking down city targets right now!</p>
+                <p style="margin-bottom: 2rem; max-width: 500px;">Practice knocking down city targets right now!</p>
                 
-                <div id="game-setup-panel" style="margin-bottom: 1rem;">
-                    <input type="text" id="player-name-input" placeholder="Enter Player Nickname" maxlength="12" style="padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid #CCC; font-size: 1rem; margin-right: 0.5rem;">
-                    <button class="nav-btn" style="background-color: var(--primary); color: white; display: inline-block; border-radius: 4px; border-bottom: none; padding: 0.6rem 1.2rem;" onclick="startGame()">Start Training Match</button>
+                <div id="game-setup-panel" style="background: #f8fafc; border: 2px solid #cbd5e1; padding: 2.5rem; border-radius: 16px; max-width: 420px; width: 100%; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin: 0 auto;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.3rem; color: var(--dark);">Enter Firing Range</h3>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <input type="text" id="player-name-input" placeholder="Enter Player Nickname" maxlength="12" style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1rem; text-align: center; outline: none;">
+                        <button class="nav-btn" style="background-color: var(--primary); color: white; width: 100%; border-radius: 8px; border-bottom: none; padding: 0.75rem 1.2rem; font-size: 1.1rem; cursor: pointer;" onclick="startGame()">Start Training Match</button>
+                    </div>
                 </div>
 
-                <div id="game-hud" style="display: none; justify-content: space-between; max-width: 600px; margin: 0 auto 10px auto; background-color: var(--dark); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: bold;">
+                <div id="game-hud" style="display: none; justify-content: space-between; width: 100%; max-width: 600px; margin: 0 auto 10px auto; background-color: var(--dark); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: bold;">
                     <div>👤 Player: <span id="hud-name">Guest</span></div>
                     <div>🎯 Score: <span id="hud-score">0</span></div>
                     <div>🎈 Darts Remaining: <span id="hud-darts">3</span></div>
                 </div>
 
-                <div id="canvas-container" style="position: relative; max-width: 600px; margin: 0 auto; display: none;">
+                <div id="canvas-container" style="position: relative; max-width: 600px; width: 100%; margin: 0 auto; display: none;">
                     <canvas id="gameCanvas" width="600" height="400" style="background: linear-gradient(to bottom, #111827, #374151); border-radius: 12px; border: 4px solid var(--dark); cursor: crosshair; width: 100%; height: auto; display: block;"></canvas>
                     <div id="game-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background: rgba(0,0,0,0.8); border-radius: 12px; color: white; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
                         <h3 id="overlay-title" style="font-size: 2rem; color: #E9C46A; margin-bottom: 0.5rem;">MATCH FINISHED</h3>
@@ -102,14 +101,16 @@
                         <button class="nav-btn" style="background-color: #2A9D8F; color: white; border-radius: 4px; border-bottom: none;" onclick="resetGameMatch()">Play Again</button>
                     </div>
                 </div>
+
+                <div id="leaderboard-container" style="width: 100%; max-width: 450px; margin: 2.5rem auto 0 auto; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 12px;">
+                  
+                </div>
             </section>
         </div>
-
-        <!-- PAGE 3: DISCOUNTS -->
         <div id="page-discounts" class="page-content">
             <section class="card card-primary" style="text-align: center;">
-                <h2>🎲 Market Day Coupon Generator</h2>
-                <p style="margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                <h2>🎲 Coupon Generator</h2>
+                <p style="margin-bottom: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">
                     Spin our official coupon machine! Higher discount rates have a much lower drop probability. You have a <strong>maximum of 3 tries</strong>, and it is entirely possible to get nothing!
                 </p>
 
@@ -122,12 +123,41 @@
                         🎰 Spin Generator Wheel
                     </button>
                 </div>
-                <p>*Make sure there is no one looking! Once you redeem the code, this code can never come again. This code can only be redeemed once.</p>
 
                 <div id="generator-result-box" style="display: none; max-width: 500px; margin: 0 auto; border-radius: 12px; padding: 2rem; border: 1px solid #e2e8f0;"></div>
             </section>
         </div>
-                <!-- PAGE 4: ADMIN -->
+
+        <div id="page-calculator" class="page-content">
+            <section class="card card-primary" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2>📊 Ticket Deal & Percentage Calculator</h2>
+                <p style="margin-bottom: 1.5rem; color: #64748B;">Select a game package and type in your lucky coupon code to view your final price savings!</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px; text-align: left; max-width: 450px; margin: 0 auto;">
+                    <div>
+                        <label style="font-weight: bold; display: block; margin-bottom: 0.4rem;">1. Select Ticket Pack:</label>
+                        <select id="calc-package-select" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #cbd5e1; background-color: white; font-size: 1rem;">
+                            <option value="0.40">1 Single Shot — $0.40</option>
+                            <option value="1.00">3 Shots Bundle — $1.00</option>
+                            <option value="0.20">1 Raffle Ticket — $0.20</option>
+                            <option value="1.00">Mega Combo Deal — $1.00</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label style="font-weight: bold; display: block; margin-bottom: 0.4rem;">2. Enter Coupon Code:</label>
+                        <input type="text" id="calc-coupon-input" placeholder="Paste or type code here" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem; text-transform: uppercase;">
+                    </div>
+
+                    <button class="nav-btn" style="background-color: var(--secondary); color: white; border: none; padding: 0.8rem; border-radius: 8px; font-size: 1.1rem; margin-top: 10px;" onclick="calculateStallPriceSavings()">
+                        🧮 Compute Final Cost
+                    </button>
+                </div>
+
+                <div id="calc-results-box" style="display: none; margin-top: 2rem; padding: 1.5rem; border-radius: 12px; background: #f8fafc; border: 2px solid #e2e8f0; text-align: left;"></div>
+            </section>
+        </div>
+
         <div id="page-admin" class="page-content">
             <section class="card card-primary" style="max-width: 650px; margin: 0 auto;">
                 <h2 style="text-align: center;">🔑 Staff Administration Portal</h2>
@@ -145,11 +175,10 @@
                         <button class="copy-btn" style="background-color: #e9c46a; color: #333;" onclick="adminToggleInfAmmo()">🎯 Toggle Infinite Arena Darts</button>
                     </div>
 
-                    <!-- Manual Code Creation Module Section -->
                     <div style="background: #ffffff; padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; border: 2px solid #cbd5e1; text-align: left;">
                         <h4 style="margin-bottom: 1rem; color: var(--dark);">➕ Add Custom Code Manually</h4>
                         <div style="display: flex; flex-direction: column; gap: 10px; max-width: 500px; margin: 0 auto;">
-                            <input type="text" id="admin-custom-code-input" placeholder="Type Custom Code Name (e.g. SPECIAL10)" style="padding: 0.6rem 1rem; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 1rem; text-transform: uppercase;">
+                            <input type="text" id="admin-custom-code-input" placeholder="Type Custom Code Name" style="padding: 0.6rem 1rem; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 1rem; text-transform: uppercase;">
                             <select id="admin-custom-tier-select" style="padding: 0.6rem 1rem; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 1rem; background-color: white;">
                                 <option value="pct10">10% Off Discount Tier</option>
                                 <option value="pct25">25% Off Discount Tier</option>
@@ -159,7 +188,6 @@
                         </div>
                     </div>
 
-                    <!-- Code Quantity & Restock Controls -->
                     <div style="background: #f1f5f9; padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid #cbd5e1; text-align: left;">
                         <h4 style="margin-bottom: 0.75rem; color: var(--dark);">📦 Live Voucher Code Vault Quantities:</h4>
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; font-weight: bold; margin-bottom: 1rem;">
@@ -169,7 +197,6 @@
                         </div>
                         <button class="copy-btn" style="background-color: #475569; width: 100%; margin-bottom: 1.5rem;" onclick="adminRestockVault()">🎲 Restock with Randomized Unique Codes</button>
 
-                        <!-- Live Master List View Details with Interactive Delete Triggers -->
                         <h4 style="margin-bottom: 0.5rem; border-top: 1px dashed #cbd5e1; padding-top: 1rem; color: var(--dark);">📋 Active Code Vault Lists:</h4>
                         <div style="font-size: 0.95rem; line-height: 1.5;">
                             <p style="margin-bottom: 0.8rem;"><strong>10% Off Codes:</strong> <span id="admin-list-10"></span></p>
@@ -181,31 +208,62 @@
             </section>
         </div>
 
-        <!-- PAGE 5: CHARITY -->
-        <div id="page-charity" class="page-content">
-            <section class="card card-primary" style="text-align: center; padding: 3rem 2rem;">
-                <h2>Can't do the percentage calculations?</h2>
-                <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem auto;">
-                    Select the bundle and type in the percentage!
-                </p>
-                <label for="percent">Select the bundle</label>
-                <br>
-                <select id="percent">
-                    <option>1 shot</option>
-                    <option>3 shots</option>
-                    <option>Raffle ticket</option>
-                    <option>Bundle</option>
-                </select>
-            </section>
-        </div>
-
     </div>
 
     <footer>
-        <p>&copy; 2026 Charity Market Day Initiative. Created by some students in 6D. Thank you for making a difference!</p>
+        <p>&copy; 2026 Nerf Shots Initiative. Created by some students in 6D.</p>
     </footer>
 
-    <!-- Link to the external JavaScript file -->
+    <script type="module" src="script.js"></script>
+
+    <script>
+        // GLOBAL ROUTER FIX: Instantly handles tab navigation before the heavy module loads
+        window.switchPage = function(event, pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+            
+            const navBar = document.getElementById('nav-bar');
+            if (navBar) navBar.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <script>
+        // GLOBAL HEADER ROUTER: Captures and tunnels all button clicks instantly without loops
+        window.switchPage = function(event, pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.remove('active'));
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+            const navBar = document.getElementById('nav-bar');
+            if (navBar) navBar.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // Forwarding layers to hook HTML elements directly into the main module state
+        window.rollLuckyDiscount = function() { if(window._rollLuckyDiscount) window._rollLuckyDiscount(); };
+        window.redeemGeneratedCode = function() { if(window._redeemGeneratedCode) window._redeemGeneratedCode(); };
+        window.verifyAdminLogin = function() { if(window._verifyAdminLogin) window._verifyAdminLogin(); };
+        window.adminResetTries = function() { if(window._adminResetTries) window._adminResetTries(); };
+        window.adminToggleInfAmmo = function() { if(window._adminToggleInfAmmo) window._adminToggleInfAmmo(); };
+        window.adminRestockVault = function() { if(window._adminRestockVault) window._adminRestockVault(); };
+        window.adminAddCustomCode = function() { if(window._adminAddCustomCode) window._adminAddCustomCode(); };
+        window.adminDeleteSpecificCode = function(p, i) { if(window._adminDeleteSpecificCode) window._adminDeleteSpecificCode(p, i); };
+        window.calculateStallPriceSavings = function() { if(window._calculateStallPriceSavings) window._calculateStallPriceSavings(); };
+        window.startGame = function() { if(window._startGame) window._startGame(); };
+    </script>
+        
     <script src="script.js"></script>
 </body>
 </html>
+
